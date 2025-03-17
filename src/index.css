@@ -1,0 +1,41 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+/* Custom Scrollbar for Webkit Browsers (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 8px; /* Width for vertical scrollbar */
+  height: 8px; /* Height for horizontal scrollbar */
+}
+
+/* Track (Background of Scrollbar) */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Light grey */
+  border-radius: 10px;
+}
+
+/* Thumb (Draggable Part) */
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #636970, #9c8eb1); /* Gradient effect */
+  border-radius: 10px;
+}
+
+/* Hover Effect on Scrollbar Thumb */
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg,#636970, #636970);
+}
+
+/* Firefox Scrollbar */
+* {
+  scrollbar-width: thin; /* Makes scrollbar thinner */
+  scrollbar-color: #a9abad #f1f1f1; /* Thumb color + Track color */
+}
