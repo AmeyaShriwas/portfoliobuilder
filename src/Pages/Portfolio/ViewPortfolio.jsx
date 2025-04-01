@@ -149,180 +149,105 @@ const ViewPortfolio = ({ isMobile, setIsMobile }) => {
             </a>
           </nav>
 
-          <div className="tab-content mt-4">
-            {/* Projects Section */}
-            <div className="tab-pane fade show active" id="projects">
-              <h4 className="text-dark" style={{ marginBottom: '20px' }}>Projects</h4>
-              <div
+          <div style={{ marginTop: '20px' }}>
+  {/* Projects Section */}
+  <div id="projects" style={{ display: 'block' }}>
+    <h4 style={{ color: '#000', marginBottom: '20px' }}>Projects</h4>
+    <div
+      style={{
+        width: '100%',
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: '20px',
+        borderRadius: '10px',
+      }}
+    >
+      {data?.projects?.map((project, index) => (
+        <div
+          key={index}
+          style={{
+            flex: '1 1 45%',
+            maxWidth: '500px',
+            borderRadius: '10px',
+            boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
+            overflow: 'hidden',
+          }}
+        >
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            {/* Image Section */}
+            <div style={{ width: '100%', paddingTop: '56.25%', position: 'relative', overflow: 'hidden' }}>
+              <img
+                src={`https://api.resumeportfolio.ameyashriwas.in/${project.projectImage}`}
+                alt={project.projectName}
                 style={{
-                  width: "100%",
-                  display: "flex",
-                  overflow: "scroll",
-                  gap: "20px",
-                  borderRadius: "10px",
+                  position: 'absolute',
+                  top: '0',
+                  left: '0',
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                }}
+              />
+            </div>
+
+            {/* Content Section */}
+            <div style={{ padding: '12px' }}>
+              <h6 style={{ color: '#000', marginBottom: '8px' }}>{project.projectName}</h6>
+              <p
+                style={{
+                  overflow: 'hidden',
+                  color: '#000',
+                  display: '-webkit-box',
+                  WebkitBoxOrient: 'vertical',
+                  WebkitLineClamp: 3,
+                  textOverflow: 'ellipsis',
                 }}
               >
-                {data?.projects?.map((project, index) => (
-                  <div
-                    key={index}
-                    className="project-card"
-                    style={{
-                      flex: "0 0 auto",
-                      overflow: "hidden",
-                      borderRadius: "10px",
-                      boxShadow: `rgba(0, 0, 0, 0.35) 0px 5px 15px`,
-                      width: isMobile ? "330px" : "500px",
-                    }}
-                  >
-                    <div
-                      className="card shadow-sm border-0"
-                      style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        height: "auto",
-                      }}
-                    >
-                      {/* Image Section */}
-                      <div
-                        className="square-container"
-                        style={{
-                          width: "100%",
-                          paddingTop: "56.25%", // Aspect ratio (16:9)
-                          position: "relative",
-                          overflow: "hidden",
-                        }}
-                      >
-                        <img
-                          src={`https://api.resumeportfolio.ameyashriwas.in/${project.projectImage}`}
-                          className="card-img-top"
-                          alt={project.projectName}
-                          style={{
-                            position: "absolute",
-                            top: "0",
-                            left: "0",
-                            width: "100%",
-                            height: "100%",
-                            objectFit: "cover",
-                          }}
-                        />
-                      </div>
+                {project.projectDescription}
+              </p>
 
-                      {/* Content Section */}
-                      <div
-                        style={{
-                          display: "flex",
-                          flexDirection: "column",
-                          padding: "12px",
-                        }}
-                      >
-                        <h6 className="card-title text-dark" style={{ marginBottom: "8px" }}>
-                          {project.projectName}
-                        </h6>
+              {/* Buttons Section */}
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '10px' }}>
+                <a
+                  href={project.liveLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    textDecoration: 'none',
+                    backgroundColor: '#007bff',
+                    color: '#fff',
+                    padding: '8px 12px',
+                    borderRadius: '5px',
+                    fontSize: '14px',
+                  }}
+                >
+                  🔗 Link
+                </a>
 
-                        <p
-                          style={{
-                            overflow: "hidden",
-                            color: "black",
-                            display: "-webkit-box",
-                            WebkitBoxOrient: "vertical",
-                            WebkitLineClamp: 3, // Limits description to 3 lines
-                            textOverflow: "ellipsis",
-                          }}
-                        >
-                          {project.projectDescription}
-                        </p>
-
-                        {/* Buttons Section */}
-                        <div
-                          style={{
-                            display: "flex",
-                            justifyContent: "space-between",
-                            marginTop: "10px",
-                          }}
-                        >
-                          <a
-                            href={project.liveLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            style={{
-                              textDecoration: "none",
-                              backgroundColor: "#007bff",
-                              color: "white",
-                              padding: "8px 12px",
-                              borderRadius: "5px",
-                              fontSize: "14px",
-                            }}
-                          >
-                            🔗 Link
-                          </a>
-
-                          <a
-                            href={project.githubLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            style={{
-                              textDecoration: "none",
-                              backgroundColor: "#24292e",
-                              color: "white",
-                              padding: "8px 12px",
-                              borderRadius: "5px",
-                              fontSize: "14px",
-                            }}
-                          >
-                            🐙 GitHub
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
+                <a
+                  href={project.githubLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    textDecoration: 'none',
+                    backgroundColor: '#24292e',
+                    color: '#fff',
+                    padding: '8px 12px',
+                    borderRadius: '5px',
+                    fontSize: '14px',
+                  }}
+                >
+                  🐙 GitHub
+                </a>
               </div>
             </div>
-
-            {/* Skills Section */}
-            <div className="tab-pane fade" id="skills">
-              <h4 className="text-dark">Skills</h4>
-              <p className="text-dark" style={{ display: 'flex', gap: '15px' }}>{data.skills.split(",").map((data) => {
-                return (
-                  <p className="text-light" style={{ backgroundColor: 'grey', padding: '10px', margin: '10px', borderRadius: '10px' }}>{data}</p>
-                )
-              })}</p>
-            </div>
-
-            {/* About Me Section */}
-            <div className="tab-pane fade" id="about">
-              <h4 className="text-dark">About Me</h4>
-              <p className="text-dark">{data.bio}</p>
-            </div>
-
-            {/* Experience Section */}
-            <div className="tab-pane fade" id="experience" style={{ padding: "20px" }}>
-              <h4 className="text-dark mb-4" style={{ borderBottom: "2px solid #007bff", paddingBottom: "5px" }}>
-                Experience
-              </h4>
-
-              {data.training_Experience.map((data, index) => (
-                <div
-                  key={index}
-                  className="card shadow-sm mb-3 border-0"
-                  style={{ padding: "15px", borderRadius: "8px", backgroundColor: "#7C99AC", color: "white" }}
-                >
-                  <p className="mb-1 fw-bold" style={{ fontSize: "14px", color:'white' }}>
-                    {data.from} - {data.to}
-                  </p>
-
-                  <p className="mb-1 fw-semibold" style={{ fontSize: "16px", color:'white' }}>
-                    {data.training_company} - <span style={{ fontSize: "16px", color:'white' }} >{data.course_job}</span>
-                  </p>
-
-                  <p  style={{ fontSize: "14px", lineHeight: "1.5", color:'white' }}>
-                    {data.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-
           </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
         </div>
       </div>
 
