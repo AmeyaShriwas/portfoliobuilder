@@ -71,185 +71,73 @@ const ViewPortfolio = ({ isMobile, setIsMobile }) => {
         </button>
       </header>
 
-      <div className="d-flex flex-column flex-md-row" style={{minHeight:'80vh'}}>
-        {/* Left Section */}
-        <div className="col-md-3 bg-white p-4 text-center border">
-          <motion.img
-            src={`https://api.resumeportfolio.ameyashriwas.in/${data.profilePhoto.replace(/^\/+/, "")}`}
-            alt="Profile"
-            className="rounded-circle"
-            style={{ width: "200px", height: "200px" }}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-          />
-       <div className="text-center" style={{ marginTop: "20px" }}>
-  <h5
-    className="text-dark"
-    style={{ 
-      fontWeight: "bold", 
-      fontSize: "25px", 
-      letterSpacing: "1px",
-      textTransform: "uppercase",
-      color: "#333",
-    }}
+      <div className="d-flex" style={{ minHeight: '80vh', overflow: 'hidden' }}>
+  {/* Left Section - Fixed */}
+  <div
+    className="col-md-3 bg-white p-4 text-center border d-flex flex-column align-items-center justify-content-center"
+    style={{ position: 'fixed', height: '80vh', width: '25%', overflow: 'hidden' }}
   >
-    {data.name}
-  </h5>
+    <motion.img
+      src={`https://api.resumeportfolio.ameyashriwas.in/${data.profilePhoto.replace(/^\/+/, "")}`}
+      alt="Profile"
+      className="rounded-circle"
+      style={{ width: "150px", height: "150px" }}
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.5 }}
+    />
+    <h5 className="text-dark mt-3" style={{ fontWeight: "bold", fontSize: "20px", textTransform: "uppercase" }}>
+      {data.name}
+    </h5>
+    {data.tagLine && (
+      <p className="text-dark text-center px-3" style={{ fontSize: "14px", fontStyle: "italic", maxWidth: "80%" }}>
+        {data.tagLine}
+      </p>
+    )}
+    <div className="d-flex flex-column gap-2 mt-3 w-100">
+      <a href={data.linkedin} target="_blank" className="btn btn-primary">LinkedIn</a>
+      <a href={`mailto:${data.email}`} className="btn btn-primary">Contact</a>
+      <a href={data.resume} className="btn btn-primary" download>Download Resume</a>
+    </div>
+  </div>
 
-  {data.tagLine && (
-    <p
-      className="text-dark"
-      style={{
-        fontSize: "16px",
-        fontStyle: "italic",
-        backgroundColor: "#f8f9fa",
-        padding: "12px 20px",
-        borderRadius: "8px",
-        display: "inline-block",
-        borderLeft: "4px solid #007bff", // Highlight effect
-        maxWidth: "80%", 
-        margin: "10px auto",
-        boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)", // Subtle shadow
-      }}
-    >
-      {data.tagLine}
-    </p>
-  )}
-</div>
-
-
-          <div className="d-flex flex-column gap-2 mt-3">
-            <a href={data.linkedin} target="_blank" rel="noopener noreferrer" className="btn" style={{ backgroundColor: "#7C99AC", color: "white" }}>
-              <FaLinkedin /> LinkedIn
-            </a>
-            <a href={`mailto:${data.email}`} className="btn" style={{ backgroundColor: "#7C99AC", color: "white" }}>
-              <FaEnvelope /> Contact
-            </a>
-            <a href={data.resume} style={{ backgroundColor: "#7C99AC", color: "white" }} className="btn" download>
-              <FaFileAlt /> Download Resume
-            </a>
-          </div>
-        </div>
-
-        {/* Right Section */}
-        <div className="col-md-9 p-4">
-          <nav className="nav nav-tabs">
-            <a className="nav-link active text-dark" data-bs-toggle="tab" href="#projects">
-              Projects
-            </a>
-            <a className="nav-link text-dark" data-bs-toggle="tab" href="#skills">
-              Skills
-            </a>
-            <a className="nav-link text-dark" data-bs-toggle="tab" href="#about">
-              About Me
-            </a>
-            <a className="nav-link text-dark" data-bs-toggle="tab" href="#experience">
-              Experience
-            </a>
-          </nav>
-
-          <div style={{ marginTop: '20px' }}>
-  {/* Projects Section */}
-  <div id="projects" style={{ display: 'block' }}>
-    <h4 style={{ color: '#000', marginBottom: '20px' }}>Projects</h4>
-    <div
-      style={{
-        width: '100%',
-        display: 'flex',
-        flexWrap: 'wrap',
-        gap: '20px',
-        borderRadius: '10px',
-      }}
-    >
-      {data?.projects?.map((project, index) => (
-        <div
-          key={index}
-          style={{
-            flex: '1 1 45%',
-            maxWidth: '500px',
-            borderRadius: '10px',
-            boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
-            overflow: 'hidden',
-          }}
-        >
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
-            {/* Image Section */}
-            <div style={{ width: '100%', paddingTop: '56.25%', position: 'relative', overflow: 'hidden' }}>
+  {/* Right Section - Scrollable */}
+  <div className="col-md-9 p-4" style={{ marginLeft: '25%', overflowY: 'auto', height: '80vh' }}>
+    <nav className="nav nav-tabs">
+      <a className="nav-link active text-dark" data-bs-toggle="tab" href="#projects">Projects</a>
+      <a className="nav-link text-dark" data-bs-toggle="tab" href="#skills">Skills</a>
+      <a className="nav-link text-dark" data-bs-toggle="tab" href="#about">About Me</a>
+      <a className="nav-link text-dark" data-bs-toggle="tab" href="#experience">Experience</a>
+    </nav>
+    <div style={{ marginTop: '20px' }}>
+      {/* Projects Section */}
+      <div id="projects" style={{ display: 'block' }}>
+        <h4 style={{ color: '#000', marginBottom: '20px' }}>Projects</h4>
+        <div className="d-flex flex-wrap gap-3">
+          {data?.projects?.map((project, index) => (
+            <div key={index} className="card p-3" style={{ width: '300px' }}>
               <img
                 src={`https://api.resumeportfolio.ameyashriwas.in/${project.projectImage}`}
                 alt={project.projectName}
-                style={{
-                  position: 'absolute',
-                  top: '0',
-                  left: '0',
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                }}
+                className="card-img-top"
+                style={{ height: '150px', objectFit: 'cover' }}
               />
-            </div>
-
-            {/* Content Section */}
-            <div style={{ padding: '12px' }}>
-              <h6 style={{ color: '#000', marginBottom: '8px' }}>{project.projectName}</h6>
-              <p
-                style={{
-                  overflow: 'hidden',
-                  color: '#000',
-                  display: '-webkit-box',
-                  WebkitBoxOrient: 'vertical',
-                  WebkitLineClamp: 3,
-                  textOverflow: 'ellipsis',
-                }}
-              >
-                {project.projectDescription}
-              </p>
-
-              {/* Buttons Section */}
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '10px' }}>
-                <a
-                  href={project.liveLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    textDecoration: 'none',
-                    backgroundColor: '#007bff',
-                    color: '#fff',
-                    padding: '8px 12px',
-                    borderRadius: '5px',
-                    fontSize: '14px',
-                  }}
-                >
-                  🔗 Link
-                </a>
-
-                <a
-                  href={project.githubLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    textDecoration: 'none',
-                    backgroundColor: '#24292e',
-                    color: '#fff',
-                    padding: '8px 12px',
-                    borderRadius: '5px',
-                    fontSize: '14px',
-                  }}
-                >
-                  🐙 GitHub
-                </a>
+              <div className="card-body">
+                <h6 className="card-title">{project.projectName}</h6>
+                <p className="card-text text-truncate" style={{ maxHeight: '50px' }}>{project.projectDescription}</p>
+                <div className="d-flex justify-content-between">
+                  <a href={project.liveLink} target="_blank" className="btn btn-primary btn-sm">🔗 Link</a>
+                  <a href={project.githubLink} target="_blank" className="btn btn-dark btn-sm">🐙 GitHub</a>
+                </div>
               </div>
             </div>
-          </div>
+          ))}
         </div>
-      ))}
+      </div>
     </div>
   </div>
 </div>
 
-        </div>
-      </div>
 
       {/* Footer */}
       <footer className="text-center p-3 mt-3 border" style={{ backgroundColor: "white", color: "black" }}>
